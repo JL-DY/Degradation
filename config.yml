@@ -4,7 +4,7 @@ use_degradation: True
 degradation: 
   gt_usm: True
   # generate kernels
-  blur_kernel_size: 21 ##whq=7
+  blur_kernel_size: 21 
   kernel_list: ['iso', 'aniso', 'generalized_iso', 'generalized_aniso', 'plateau_iso', 'plateau_aniso']
   kernel_prob: [0.45, 0.25, 0.12, 0.03, 0.12, 0.03]
   sinc_prob: 0.0
