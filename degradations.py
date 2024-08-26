@@ -620,7 +620,7 @@ def generate_poisson_noise_pt(img, scale=1.0, gray_noise=0):
         (Tensor): Returned noisy image, shape (b, c, h, w), range[0, 1],
             float32.
     """
-    b, _, h, w = img.size()
+    b, c, h, w = img.size()
     if isinstance(gray_noise, (float, int)):
         cal_gray_noise = gray_noise > 0
     else:
@@ -636,7 +636,7 @@ def generate_poisson_noise_pt(img, scale=1.0, gray_noise=0):
         vals = img_gray.new_tensor(vals_list).view(b, 1, 1, 1)
         out = torch.poisson(img_gray * vals) / vals
         noise_gray = out - img_gray
-        noise_gray = noise_gray.expand(b, 3, h, w)
+        noise_gray = noise_gray.expand(b, c, h, w) # 此处原始代码c=3
 
     # always calculate color noise
     # round and clip image for counting vals correctly
